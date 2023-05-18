@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const dotenv = require('dotenv').config();
 
-const dbMongo = process.env.DB_MONGODB
+const dbMongo = process.env.DB_MONGODB || process.env.DB_MONGODB_LOCAL
 
 const connect = async () => {
 
@@ -13,7 +13,7 @@ const connect = async () => {
         console.log(error)
         process.exit()
     }
-}
+} 
 
 
 module.exports =  {

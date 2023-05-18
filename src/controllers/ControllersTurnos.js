@@ -51,7 +51,7 @@ const postUser = async (data) => {
 // Elimina un registro por el id
 const deleteUser = async (id) => {
     
-    const result = await model.remove({
+    const result = await model.deleteOne({
         _id: id
     })
 
