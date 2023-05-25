@@ -6,7 +6,7 @@ const { getUsers, getUsersByDayViernes, getUsersByDaySabado, getUserById, postUs
  
 // Rutas
  
-// Trae todo los registros
+// Trae todo los registros (RUTA SIN USO)
 turnosRoute.get('/', async (req, res) => {
 
     try {
@@ -48,7 +48,7 @@ turnosRoute.get('/sabado', async (req, res) => {
     }
 })
 
-// Trae un registro por el id
+// Trae un registro por el id (RUTA SIN USO)
 turnosRoute.get('/:id', async (req, res) => {
 
     try {
@@ -64,7 +64,7 @@ turnosRoute.get('/:id', async (req, res) => {
     }
 })
 
-// Guarda un registro
+// Guarda un turnos en la db
 turnosRoute.post('/', async (req, res) => {
     try {
         const data = req.body
@@ -81,6 +81,7 @@ turnosRoute.post('/', async (req, res) => {
     
 })
 
+// Elimina los turnos que hay en las tablas viernes y sabado
 turnosRoute.delete('/:id', async (req, res) => {
 
     try {

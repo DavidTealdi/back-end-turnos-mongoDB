@@ -5,7 +5,7 @@ const { getHora } = require('../controllers/getHora')
 
 // Rutas
  
-// Trae todas las horas
+// Trae todas las horas de la db
 getRouteTurnosHora.get('/', async (req, res) => {
 
     try {

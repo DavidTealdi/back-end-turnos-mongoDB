@@ -1,8 +1,9 @@
 const loginRoute = require('express').Router();
 
-
+// Importamos los controladores
 const { getLoginUser, postUser } = require('../controllers/controllersLogin')
 
+// busca un usuario en la db para el login
 loginRoute.get('/', async (req, res) => {
     
     try {
@@ -18,7 +19,7 @@ loginRoute.get('/', async (req, res) => {
     }
 });
  
-
+// crea un usuario nuevo en la db (RUTA SIN USO)
 loginRoute.post('/', async (req, res) => {
     try {
         const data = req.body

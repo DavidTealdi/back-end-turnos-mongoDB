@@ -1,7 +1,7 @@
 const model = require('../models/userTurnos')
 
 
-// Trae todos los registros
+// Trae todos los turnos de la db
 const getUsers = async () => {
     
     const user = await model.find()
@@ -9,7 +9,7 @@ const getUsers = async () => {
     return user
 }
 
-// Trae todos los dias viernes
+// Trae todos los turnos dias viernes. Para mostrarlos en la tabla viernes
 const getUsersByDayViernes = async () => {
     
     const response = await model.find({
@@ -18,7 +18,8 @@ const getUsersByDayViernes = async () => {
 
     return response
 };
-  
+
+// Trae todos los turnos dias sabados. Para mostrarlos en la tabla sabado
 const getUsersByDaySabado = async () => {
     
     const response = await model.find({
@@ -28,7 +29,7 @@ const getUsersByDaySabado = async () => {
     return response
 };
 
-// Trae un registro por el id
+// Trae un registro por el id (CONTROLADOR SIN USO)
 const getUserById = async (id) => {
     
     const user = await model.find({
@@ -38,7 +39,7 @@ const getUserById = async (id) => {
     return user
 }
 
-// Crea un registro
+// Crea un turno nuevo
 const postUser = async (data) => {
     
     const { name, lastName, number, dia, hora } = data;
@@ -48,7 +49,7 @@ const postUser = async (data) => {
     return user
 }
 
-// Elimina un registro por el id
+// Elimina un turno por el id
 const deleteUser = async (id) => {
     
     const result = await model.deleteOne({
