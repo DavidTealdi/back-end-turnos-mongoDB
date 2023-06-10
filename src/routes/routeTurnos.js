@@ -1,100 +1,26 @@
 const turnosRoute = require('express').Router();
 
-// import de los contraladores
-const { getUsers, getUsersByDayViernes, getUsersByDaySabado, getUserById, postUser, deleteUser } = require('../controllers/ControllersTurnos')
 
- 
-// Rutas
- 
-// Trae todo los registros (RUTA SIN USO)
-turnosRoute.get('/', async (req, res) => {
-
-    try {
-        
-        const response = await getUsers()
-
-        res.status(200).json(response)
-
-    } catch (error) {
-        return res.status(404).send(error.message);
-    }
-})
-
-// Trea los turnos por dia viernes
-turnosRoute.get('/viernes', async (req, res) => {
-
-    try {
-        
-        const response = await getUsersByDayViernes()
-
-        res.status(200).json(response)
-
-    } catch (error) {
-        return res.status(404).send(error.message);
-    }
-})
-
-// Trea los turnos por dia sabado
-turnosRoute.get('/sabado', async (req, res) => {
-
-    try {
-
-        const response = await getUsersByDaySabado()
-        
-        res.status(200).json(response)
-
-    } catch (error) {
-        return res.status(404).send(error.message);
-    }
-})
-
-// Trae un registro por el id (RUTA SIN USO)
-turnosRoute.get('/:id', async (req, res) => {
-
-    try {
-        
-        const { id } = req.params
-
-        const response = await getUserById(id)
-
-        res.status(200).json(response)
-
-    } catch (error) {
-        return res.status(404).send(error.message);
-    }
-})
-
-// Guarda un turnos en la db
-turnosRoute.post('/', async (req, res) => {
-    try {
-        const data = req.body
-
-        if(!data.name || !data.lastName) throw Error('Falta información obligatoria');
-
-        const newUser = await postUser(data);
-        
-        return res.status(200).json(newUser);
-
-    } catch (error) {
-        return res.status(404).send(error.message);
-    };
+// Importamos los Handlers
+const {
     
-})
+    getTurnosHandler, 
+    getTurnosHandlerById, 
+    getTurnosHandlerByViernes, 
+    getTurnosHandlerBySabado, 
+    postTurnoHandlers, 
+    deleteTurnoHandlers 
 
-// Elimina los turnos que hay en las tablas viernes y sabado
-turnosRoute.delete('/:id', async (req, res) => {
+} = require('../handlers/turnoHandlers')
 
-    try {
-        
-        const { id } = req.params
 
-        const response = await deleteUser(id)
-
-        res.status(200).json(response)
-
-    } catch (error) {
-        return res.status(404).send(error.message);
-    }
-})
+// Rutas
+turnosRoute
+    .get('/', getTurnosHandler)
+    .get('/viernes', getTurnosHandlerByViernes)
+    .get('/sabado', getTurnosHandlerBySabado)
+    .get('/:id', getTurnosHandlerById)
+    .post('/', postTurnoHandlers)
+    .delete('/:id', deleteTurnoHandlers)
 
 module.exports = turnosRoute

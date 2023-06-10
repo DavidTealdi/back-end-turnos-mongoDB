@@ -1,22 +1,12 @@
 const getRouteTurnosHora = require('express').Router();
 
-const { getHora } = require('../controllers/getHora')
+// Importamos los Handlers
+const { getHoras } = require('../handlers/getHoraHandlers')
 
 
-// Rutas
- 
-// Trae todas las horas de la db
-getRouteTurnosHora.get('/', async (req, res) => {
+// Ruta
+getRouteTurnosHora
+    .get('/', getHoras)
 
-    try {
-        
-        const response = await getHora()
-
-        res.status(200).json(response)
-
-    } catch (error) {
-        return res.status(404).send(error.message);
-    }
-})
-
+   
 module.exports = getRouteTurnosHora
