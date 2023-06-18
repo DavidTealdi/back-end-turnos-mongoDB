@@ -4,7 +4,7 @@ const { Router } = require('express');
 const routeTurnos = require("./routeTurnos")
 const loginRoute = require("./loginRoute")
 const getRouteHora = require('./getRouteHora')
-
+const turnoDeleteRoute = require('./turnoDeleteRoute')
 
 const mainRouter = Router();
 
@@ -17,6 +17,9 @@ mainRouter.use("/login", loginRoute)
 
 // Ruta para traer los turnos de la DB
 mainRouter.use("/getturnos", getRouteHora)
+
+// Ruta para eliminar turnos
+mainRouter.use('/turnodelete', turnoDeleteRoute)
 
 
 

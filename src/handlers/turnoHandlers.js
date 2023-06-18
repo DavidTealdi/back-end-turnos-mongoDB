@@ -64,12 +64,27 @@ const getTurnosHandlerBySabado = async (req, res) => {
 // Guarda un turnos en la db
 const postTurnoHandlers = async (req, res) => {
     
+    const data = req.body
+
+    let obj = {
+        name: '',
+        lastName: '',
+        number: '',
+        dia: '',
+        hora: ''
+    }
+
     try {
-        const data = req.body
 
         if(!data.name || !data.lastName) throw Error('Falta información obligatoria');
 
-        const newUser = await postUser(data);
+        obj.name = data.name.toLowerCase().trim()
+        obj.lastName = data.lastName.toLowerCase().trim()
+        obj.number = data.number.trim()
+        obj.dia = data.dia
+        obj.hora = data.hora
+
+        const newUser = await postUser(obj.name, obj.lastName, obj.number, obj.dia, obj.hora);
         
         return res.status(200).json(newUser);
 

@@ -40,9 +40,7 @@ const getUserById = async (id) => {
 }
 
 // Crea un turno nuevo
-const postUser = async (data) => {
-    
-    const { name, lastName, number, dia, hora } = data;
+const postUser = async (name, lastName, number, dia, hora) => {
     
     const user = await model.create({ name, lastName, number, dia, hora })
     
