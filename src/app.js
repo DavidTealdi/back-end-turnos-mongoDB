@@ -8,7 +8,6 @@ const server = express();
 
 const URL = process.env.URL_LOCAL || process.env.URL_REMOTA
 
-
 // Middleware
 server.use(express.urlencoded({extended: false}));
 server.use(express.json())
