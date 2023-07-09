@@ -28,7 +28,7 @@ const postUserLogin = async (req, res) => {
         return res.status(200).json(newUser);
 
     } catch (error) {
-        return res.status(404).json(error.message);
+        return res.status(500).json(error.message);
     };
 }
 

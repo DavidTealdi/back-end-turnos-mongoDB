@@ -4,8 +4,8 @@ const model = require('../models/userLogin')
 const getLoginUser = async (user, password) => {
 
     const response = await model.find({
-        user: user,
-        password: password
+        user,
+        password
     });
 
     return response

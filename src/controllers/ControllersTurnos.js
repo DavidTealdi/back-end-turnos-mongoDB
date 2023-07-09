@@ -13,7 +13,9 @@ const getUsers = async () => {
 const getUsersByDayViernes = async () => {
     
     const response = await model.find({
+    
         dia: 'Viernes'
+    
     }).sort({hora: 1}); // Ordena los horarios de forma ascendente
 
     return response
@@ -23,7 +25,9 @@ const getUsersByDayViernes = async () => {
 const getUsersByDaySabado = async () => {
     
     const response = await model.find({
+       
         dia: 'Sabado'
+    
     }).sort({hora: 1}); // Ordena los horarios de forma ascendente
 
     return response
@@ -33,7 +37,9 @@ const getUsersByDaySabado = async () => {
 const getUserById = async (id) => {
     
     const user = await model.find({
+       
         _id: id
+    
     })
 
     return user
@@ -51,7 +57,9 @@ const postUser = async (name, lastName, number, dia, hora) => {
 const deleteUser = async (id) => {
     
     const result = await model.deleteOne({
+       
         _id: id
+    
     })
 
     return {deleted: true}

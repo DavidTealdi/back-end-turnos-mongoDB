@@ -14,7 +14,7 @@ const userTurnoSchema = new Schema({
     number: {
         type: String,
         unique: false,
-        required: false
+        required: false,
     },
     dia: {
         type: String,
@@ -23,7 +23,7 @@ const userTurnoSchema = new Schema({
     },
     hora: {
         type: String,
-        unique: false,
+        unique: false, 
         required: true
     }
 }, {
