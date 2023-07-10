@@ -66,7 +66,7 @@ const postTurnoHandlers = async (req, res) => {
     
     const data = req.body
 
-    let obj = {
+    let datos = {
         name: '',
         lastName: '',
         number: '',
@@ -74,22 +74,22 @@ const postTurnoHandlers = async (req, res) => {
         hora: ''
     }
 
+    datos.name = data.name.toLowerCase().trim()
+    datos.lastName = data.lastName.toLowerCase().trim()
+    datos.number = data.number.trim()
+    datos.dia = data.dia
+    datos.hora = data.hora
+
     try {
 
-        if(!data.name || !data.lastName) throw Error('Falta información obligatoria');
+        if(!data.name || !data.lastName || !data.dia || !data.hora) throw Error('Falta información obligatoria');
 
-        obj.name = data.name.toLowerCase().trim()
-        obj.lastName = data.lastName.toLowerCase().trim()
-        obj.number = data.number.trim()
-        obj.dia = data.dia
-        obj.hora = data.hora
-
-        const newUser = await postUser(obj.name, obj.lastName, obj.number, obj.dia, obj.hora);
+        const newUser = await postUser(datos.name, datos.lastName, datos.number, datos.dia, datos.hora);
         
         return res.status(200).json(newUser);
 
     } catch (error) {
-        return res.status(404).send(error.message);
+        return res.status(500).send(error.message);
     };
 }
 

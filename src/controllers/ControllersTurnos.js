@@ -48,6 +48,9 @@ const getUserById = async (id) => {
 // Crea un turno nuevo
 const postUser = async (name, lastName, number, dia, hora) => {
     
+    // si numero no tiene valor ponemos uno por defecto
+    if (number === '') number = "Sin numero"
+
     const user = await model.create({ name, lastName, number, dia, hora })
     
     return user
