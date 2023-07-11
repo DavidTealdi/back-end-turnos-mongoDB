@@ -13,7 +13,7 @@ const mainRouter = Router();
 mainRouter.use("/turno", routeTurnos)
 
 // Ruta para el login
-mainRouter.use("/login", loginRoute)
+mainRouter.use("/autho", loginRoute)
 
 // Ruta para traer los turnos de la DB
 mainRouter.use("/getturnos", getRouteHora)

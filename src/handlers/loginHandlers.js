@@ -3,11 +3,11 @@ const { getLoginUser, postUser } = require('../controllers/controllersLogin');
 
 // busca un usuario en la db para el login
 const getUserLogin = async (req, res) => {
+    
+    const {user, password} = req.query 
 
     try {
         
-        const {user, password} = req.query 
-
         const response = await getLoginUser(user, password)
 
         return res.status(200).json(response)
@@ -19,11 +19,12 @@ const getUserLogin = async (req, res) => {
 
 // crea un usuario nuevo en la db (RUTA SIN USO)
 const postUserLogin = async (req, res) => {
-
+    
+    const { user, password } = req.body;
+    
     try {
-        const data = req.body
 
-        const newUser = await postUser(data);
+        const newUser = await postUser(user, password);
         
         return res.status(200).json(newUser);
 

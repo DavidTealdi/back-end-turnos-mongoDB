@@ -1,22 +1,27 @@
 const model = require('../models/userLogin')
+const {encrypt, compare} = require('../bcryptjs/bcrypt')
 
 // Busca el usuario que viene por body en la db para el login. 
 const getLoginUser = async (user, password) => {
 
-    const response = await model.find({
-        user,
-        password
-    });
+    const userDB = await model.findOne({ user })
 
-    return response
+    const checkPassword = await compare(password, userDB.password)
+
+    if (checkPassword) return userDB;
+
+    if (!checkPassword) throw new Error ('Contraseña Invalida')
 }
 
 // Guarda un usuario nuevo en la db (CONTROLADOR SIN USO)
-const postUser = async (data) => {
+const postUser = async (user, password) => {
     
-    const { user, password } = data;
+    const passwordHash = await encrypt(password)
     
-    const newuser = await model.create({ user, password })
+    const newuser = await model.create({ 
+        user, 
+        password: passwordHash
+    })
     
     return newuser
 }

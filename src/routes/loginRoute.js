@@ -5,8 +5,8 @@ const { getUserLogin, postUserLogin } = require('../handlers/loginHandlers')
 
 
 // Rutas
-loginRoute
-    .get('/', getUserLogin)
-    .post('/', postUserLogin)
+loginRoute    
+    .post('/login', getUserLogin)
+    .post('/register', postUserLogin)
 
 module.exports = loginRoute
